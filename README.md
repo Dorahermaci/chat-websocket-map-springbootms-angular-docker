@@ -30,13 +30,24 @@ Assurez-vous d'avoir Docker et Docker Compose installés sur votre machine.
 
 3. Exécutez la commande suivante pour démarrer tous les conteneurs :
 
-   docker-compose up
+    docker-compose up
 
 5. Attendez que tous les conteneurs se chargent complètement. Vous pouvez vérifier les journaux pour vous assurer que tout fonctionne correctement.
 
-6. Une fois que tout est prêt, ouvrez votre navigateur et accédez à l'application Angular à l'adresse http://localhost:4200.
+6. Naviguez dans le répertoire chatroom-frontend du projet.
 
-7. Vous pouvez maintenant utiliser l'application, y compris le chat et la carte affichant les positions de camping.
+7. Exécutez la commande suivante pour télécharger les dépendances du projet frontend :
+
+    npm install
+
+
+8. Exécutez la commande suivante pour lancer le projet frontend :
+
+    npm start
+
+9. Une fois que tout est prêt, ouvrez votre navigateur et accédez à l'application Angular à l'adresse http://localhost:4200.
+
+10. Vous pouvez maintenant utiliser l'application, y compris le chat et la carte affichant les positions de camping.
 
 ## Arrêt du projet
 
