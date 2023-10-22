@@ -1,6 +1,6 @@
 # chat-websocket-map-springbootms-angular-docker
 
-# Projet de Chatroom et Camping
+# Projet Camping
 
 Ce projet est composé de plusieurs microservices et d'une application Angular, tous configurés pour fonctionner dans des conteneurs Docker et orchestrés à l'aide de Docker Compose.
 
