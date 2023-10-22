@@ -1,0 +1,20 @@
+<div class="chat-container">
+    <button (click)="toggleChat()">Toggle Chat</button>
+   
+    <div [ngClass]="{'message-container-expanded': isChatExpanded, 'message-container-collapsed': !isChatExpanded, 'scrollable': messageCount > maxMessagesToShow}" class="message-container scrollable">
+  
+  
+      <div class="message" *ngFor="let msg of messageService.messages">
+        <span class="message-sender">{{ msg.senderName }}:</span>
+        <div class="message-text">
+          <div class="message-content">{{ msg.message }}</div>
+          <img *ngIf="msg.image" [src]="msg.image" class="message-image" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="input-container">
+      <input type="text" [(ngModel)]="message.message" name="message" placeholder="Message" />
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>

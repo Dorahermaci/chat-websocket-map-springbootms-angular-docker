@@ -1,0 +1,27 @@
+build image 
+docker build -t your-image-name:your-tag .
+
+
+
+
+il faut quil soient dans le meme réseau et il faut rajouter le nom du contenaire au niveau de application.properties
+
+docker network create my-network (création d'un réseau en commun)
+
+
+spring.application.name=eureka-server (meme que le nom du contenaire)
+
+rajouter cette ligne au niveau de application.properties de l'app client 
+
+eureka.client.service-url.defaultZone: http://eureka-server:8761  (avec eureka-server le meme que celui den haut et le meme que le nom de contenaire)
+
+
+
+docker run -p 8761:8761 --network my-network --name eureka-server -d eureka-server-ms-image
+docker run -p 8089:8089 --network my-network --name chatroom-ms -d chatroom-ms-image
+
+
+
+
+
+http://localhost:8086/auth/admin

@@ -1,0 +1,98 @@
+version: "3.8"
+
+services:
+
+  db:
+    image: mysql:latest
+    restart: always
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'microservicedb'
+    ports:
+      - 3306:3306
+    networks:
+      - mynetwork
+    volumes:
+      - mysql:/var/lib/mysql
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27018:27017"
+    networks:
+      - mynetwork  
+    volumes:
+      - mongodb-data:/data/db
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    container_name: phpmyadmin-container
+    ports:
+      - 8081:80
+    environment:
+      PMA_HOST: mysql-container
+    networks:
+      - mynetwork
+      
+  eureka-server-ms-image:
+    build: ./eureka-server-ms
+    container_name: eureka-server
+    ports:
+      - 8761:8761
+    networks:
+      - mynetwork
+
+  chatroom-ms-image:
+    build: ./chatroon-backend
+    container_name: chatroom-ms
+    environment:
+      MYSQL_HOST: 'db'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_DATABASE: 'microservicedb'
+    ports:
+      - 8089:8089
+    links:
+      - db
+    networks:
+      - mynetwork
+
+  gateway:
+    build: ./Api_Gateway_Server
+    container_name: gateway
+    ports:
+      - 8082:8082
+    networks:
+      - mynetwork
+    depends_on:
+      - eureka-server-ms-image
+  
+  camping-js-ms:
+    build: ./camping-js-ms
+    ports:
+      - "3000:3000"
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    networks:
+      - mynetwork
+
+
+  
+  keycloak:
+    image: jboss/keycloak
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+    ports:
+      - "8086:8080"
+
+networks:
+  mynetwork:
+
+volumes:
+  mysql:
+  mongodb-data:
