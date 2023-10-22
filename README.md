@@ -38,11 +38,13 @@ Assurez-vous d'avoir Docker et Docker Compose installés sur votre machine.
 
 7. Exécutez la commande suivante pour télécharger les dépendances du projet frontend :
 
+    ```bash
     npm install
 
 
 8. Exécutez la commande suivante pour lancer le projet frontend :
 
+    ```bash
     npm start
 
 9. Une fois que tout est prêt, ouvrez votre navigateur et accédez à l'application Angular à l'adresse http://localhost:4200.
