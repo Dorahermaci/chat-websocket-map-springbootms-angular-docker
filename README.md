@@ -30,6 +30,7 @@ Assurez-vous d'avoir Docker et Docker Compose installés sur votre machine.
 
 3. Exécutez la commande suivante pour démarrer tous les conteneurs :
 
+     ```bash
     docker-compose up
 
 5. Attendez que tous les conteneurs se chargent complètement. Vous pouvez vérifier les journaux pour vous assurer que tout fonctionne correctement.
